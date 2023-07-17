@@ -1,10 +1,12 @@
 module Node where
-import Data.ByteString
+
+import Data.ByteString qualified as BS
 import Control.Monad
 
-type NodeHandler = ByteString -> IO ()
+type NodeHandler = BS.ByteString -> IO ()
 
 node :: NodeHandler -> IO ()
 node handler = forever do
-  ln <- readLn
+  ln <- BS.getLine
+  print ln
   handler ln
